@@ -18,7 +18,14 @@ export default class Store {
         }
     }
 
+    patchTodo(id, value) {
+        const node = this.getTodoById(id);
+        node.value = value;
+        console.log(this._store)
+    }
+
     addTodo(value) {
         this._store.push({ id: this._store.length + 1, value });
+        return this._store[this._store.length - 1];
     }
 }

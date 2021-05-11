@@ -8,7 +8,7 @@
 </head>
 
 <body class="min-h-screen min-w-full flex items-center bg-gray-100 flex-col gap-4 p-8">
-    <h1 class="text-3xl font-medium text-center text-green-500">Tasks</h1>
+    <h1 class="text-3xl font-medium text-center text-green-500">To Do</h1>
     <div class="rounded shadow-md md:w-1/2 w-full relative">
         <input type="text" name="todo" placeholder="Type something to create a task" id="todo-input"
             class="p-4 text-xl w-full block" />
@@ -18,12 +18,12 @@
 
     </div>
     <template id="task">
-        <div class="rounded shadow-md w-full relative">
-            <input type="checkbox" name="status" id="task-status"
+        <div class="rounded shadow-md w-full relative task-container">
+            <input type="checkbox" name="status"
                 class="absolute h-6 w-6 left-4 top-5 opacity-0 task-check cursor-pointer z-40">
             <label for="status" class="absolute h-6 w-6 left-4 top-5 bg-gray-100 rounded-full duration-300 z-0"></label>
             <input type="text" name="todo" placeholder="Enter task title"
-                class="p-4 text-xl w-full block pl-12" />
+                class="p-4 text-xl w-full block pl-12 task-content" />
         </div>
     </template>
 </body>

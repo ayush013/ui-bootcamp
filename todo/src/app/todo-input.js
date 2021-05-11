@@ -1,8 +1,9 @@
 export default class TodoInput {
-    constructor(stateService) {
+    constructor(stateService, layoutService) {
         this.input = document.querySelector('#todo-input');
         this.bindListener(this.input);
         this.stateService = stateService;
+        this.layoutService = layoutService;
     }
 
     bindListener(input) {
@@ -19,7 +20,8 @@ export default class TodoInput {
 
     addTodo(value) {
         if (value.trim()) {
-            this.stateService.addTodo(value);
+            const data = this.stateService.addTodo(value);
+            this.layoutService.addLayout(data);
             this.clearInput();
         } else {
             alert('Please enter a valid Task');
