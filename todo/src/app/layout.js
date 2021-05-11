@@ -28,5 +28,10 @@ export default class Layout {
         this.wrapperRef.appendChild(node);
     }
 
+    removeLayout(id) {
+        const node = this.wrapperRef.querySelector(`#task-${id}`);
+        this.wrapperRef.removeChild(node);
+    }
+
 
 }

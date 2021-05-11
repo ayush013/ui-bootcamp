@@ -16,19 +16,23 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader', 'postcss-loader'],
+        test: /\.html$/,
+        loader: 'html-loader',
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'assets/images',
+        test: /\.(svg|png|jpg|gif)$/,
+        type: 'asset/resource'
+      },
+      {
+        test: /\.(scss|css)$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader', 'postcss-loader'],
       },
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
+    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
     new HtmlWebpackPlugin({
-      title: 'Scaffold - Production',
+      title: 'Scafold - Production',
       template: 'index.html'
     }),
   ],

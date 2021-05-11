@@ -16,13 +16,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader'],
+        test: /\.html$/,
+        loader: 'html-loader',
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'assets/images',
+        test: /\.(svg|png|jpg|gif)$/,
+        type: 'asset/resource'
       },
+      {
+        test: /\.(scss|css)$/,
+        use: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader'],
+      }
     ],
   },
   plugins: [
