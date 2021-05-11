@@ -33,11 +33,7 @@ body {
 
 
 .task-check {
-  &:hover {
-   + label {
-    @apply bg-green-100 scale-95;
-    }
-  }
+
   &:checked + label {
     @apply bg-green-400;
   }
