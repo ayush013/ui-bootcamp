@@ -15,7 +15,7 @@ export default class Store {
     deleteTodo(id) {
         const deleted = this.getTodoById(id);
         if (deleted) {
-            this._store.splice(deleted.id, 1);
+            this._store.splice(this._store.indexOf(deleted), 1);
         }
         this.setStore();
     }
@@ -26,8 +26,14 @@ export default class Store {
         this.setStore();
     }
 
+    changeStatus(id, status) {
+        const node = this.getTodoById(id);
+        node.done = status;
+        this.setStore();
+    }
+
     addTodo(value) {
-        this._store.push({ id: this._store.length + 1, value });
+        this._store.push({ id: parseInt(Math.random() * 100000, 10), value, done: false });
         this.setStore();
         return this._store[this._store.length - 1];
     }

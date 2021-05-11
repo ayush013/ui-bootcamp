@@ -8,7 +8,7 @@
 </head>
 
 <body class="min-h-screen min-w-full flex items-center bg-gray-100 flex-col gap-4 p-8">
-    <h1 class="text-3xl font-medium text-center text-green-500">To Do</h1>
+    <h1 class="text-xl font-bold tracking-wider uppercase text-center text-green-500 select-none">To Do</h1>
     <div class="rounded shadow-md md:w-1/2 w-full relative">
         <input type="text" name="todo" placeholder="Type something to create a task" id="todo-input"
             class="p-4 text-xl w-full block" />
@@ -19,11 +19,15 @@
     </div>
     <template id="task">
         <div class="rounded shadow-md w-full relative task-container hover:shadow-xl duration-300">
-            <input type="checkbox" name="status"
-                class="absolute h-6 w-6 left-4 top-5 opacity-0 task-check cursor-pointer z-40">
-            <label for="status" class="absolute h-6 w-6 left-4 top-5 bg-gray-100 rounded-full duration-300 z-0"></label>
+            <div class="absolute left-4 top-5 h-6 w-6 task-check">
+                <input type="checkbox" name="status" class="absolute h-full w-full opacity-0 z-40 cursor-pointer">
+                <label for="status" class="absolute h-full w-full bg-gray-100 rounded-full duration-300 z-0"></label>
+                <img src="./src/assets/done.svg" alt="Done"
+                    class="h-full w-full absolute p-1 hidden">
+            </div>
+
             <input type="text" name="todo" placeholder="Enter task title"
-                class="p-4 text-xl w-full block px-12 task-content" />
+                class="p-4 text-xl w-full block px-12 task-content duration-300" />
             <img src="./src/assets/delete.svg" alt="Delete"
                 class="task-delete opacity-30 duration-300 hover:opacity-90 absolute right-5 cursor-pointer top-5 h-4 w-4">
         </div>
