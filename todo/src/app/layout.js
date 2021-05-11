@@ -35,7 +35,9 @@ export default class Layout {
 
         taskContainer.id = `task-${data.id}`;
 
-        input.addEventListener('keyup', e => this.stateService.patchTodo(data.id, e.target.value));
+        const patchTodo = this.debounceInput(this.stateService.patchTodo.bind(this.stateService), 500);
+
+        input.addEventListener('keyup', e => patchTodo(data.id, e.target.value));
         input.value = data.value;
 
         checkboxInput.addEventListener('change', (e) => {
@@ -70,6 +72,14 @@ export default class Layout {
     unmarkAsDone(input, img) {
         input.classList.remove('line-through', 'opacity-50');
         img.classList.add('hidden');
+    }
+
+    debounceInput(fn, delay) {
+        let timer;
+        return function(...args) {
+            clearTimeout(timer);
+            timer = setTimeout(() => fn(...args), delay);
+        }
     }
 
 
