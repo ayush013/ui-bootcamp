@@ -6,6 +6,12 @@ export default class Layout {
         this.wrapperRef = document.querySelector('#tasks-wrapper');
         this.stateService = stateService;
 
+        const data = this.stateService.getAllTodo();
+        if (data.length) {
+            data.forEach(element => {
+                this.addLayout(element);
+            });
+        }
     }
 
     addLayout(data) {
