@@ -7,7 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-    <h1>Todo App</h1>
+<body class="min-h-screen min-w-full flex items-center bg-gray-100 flex-col gap-4 p-8">
+    <h1 class="text-3xl font-medium text-center text-green-500">Tasks</h1>
+    <div class="rounded shadow-md md:w-1/2 w-full relative">
+        <input type="text" name="todo" placeholder="Type something to create a task" id="todo-input"
+            class="p-4 text-xl w-full block" />
+    </div>
+
+    <div id="tasks-wrapper" class="flex flex-col gap-3 md:w-1/2 w-full">
+        <div class="rounded shadow-md w-full relative">
+            <input type="checkbox" name="status" id="task-status"
+                class="absolute h-6 w-6 left-4 top-5 opacity-0 task-check cursor-pointer z-40">
+            <label for="status" class="absolute h-6 w-6 left-4 top-5 bg-gray-100 rounded-full duration-300 z-0"></label>
+            <input type="text" name="todo" placeholder="Type something to create a task" id="todo-input"
+                class="p-4 text-xl w-full block pl-12" value="Get Groceries" />
+        </div>
+    </div>
+    <template id="task">
+        <div class="rounded shadow-md w-full relative">
+            <input type="checkbox" name="status" id="task-status"
+                class="absolute h-6 w-6 left-4 top-5 opacity-0 task-check cursor-pointer z-40">
+            <label for="status" class="absolute h-6 w-6 left-4 top-5 bg-gray-100 rounded-full duration-300 z-0"></label>
+            <input type="text" name="todo" placeholder="Type something to create a task" id="todo-input"
+                class="p-4 text-xl w-full block pl-12" />
+        </div>
+    </template>
 </body>
+
 </html>
