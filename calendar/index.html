@@ -10,11 +10,9 @@
 
 <body class="min-h-screen w-full bg-gray-100 p-8">
     <div class="flex items-center gap-2 text-3xl font-semibold">
-        <button class="hover:bg-gray-200 duration-200 px-4 py-2 rounded">&lt;</button>
-        <select class="text-4xl bg-transparent appearance-none p-2 hover:bg-gray-200 duration-200 rounded font-semibold cursor-pointer" id="month-picker">
-            <option value="May">May 2021</option>
-        </select>
-        <button class="hover:bg-gray-200 duration-200 px-4 py-2 rounded">&gt;</button>
+        <button class="hover:bg-gray-200 duration-200 px-4 py-2 rounded scale-x-75 transform">&lt;</button>
+        <select class="text-2xl bg-transparent appearance-none p-2 hover:bg-gray-200 duration-200 rounded font-semibold cursor-pointer text-center" id="month-picker"></select>
+        <button class="hover:bg-gray-200 duration-200 px-4 py-2 rounded scale-x-75 transform">&gt;</button>
     </div>
 
     <div class="month-view grid grid-cols-7 mt-6" id="month-view">
