@@ -1,9 +1,5 @@
 export default class DateService {
 
-    monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-
     constructor() {}
 
     getCurrentDate() {
@@ -16,3 +12,9 @@ export default class DateService {
 
 
 }
+
+export const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+export const days = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

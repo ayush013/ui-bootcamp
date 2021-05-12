@@ -19,12 +19,20 @@
 
     </div>
 
+    <template id="day-tile">
+        <div class="day-tile bg-white p-3 flex col-span-1">
+            <div class="text-center w-full text-xs font-semibold day-label text-green-500 tracking-wider uppercase">
+                Monday</div>
+        </div>
+    </template>
+
     <template id="date-tile">
         <div
             class="date-tile cursor-pointer bg-white p-4 flex col-span-1 flex-col border border-white hover:border-gray-300 duration-200 hover:bg-gray-50">
-            <div class="text-right w-full text-2xl font-semibold date-label">1</div>
+            <div class="flex justify-end w-full text-2xl font-semibold date-label"> <span
+                    class="h-12 flex justify-center items-center w-12 rounded-full">1</span></div>
             <div class="w-full h-10 flex items-end">
-                <a class="h-3 w-3 rounded-full date-event"></a>
+                <div class="h-1 w-full rounded-full date-event hidden"></div>
             </div>
         </div>
     </template>

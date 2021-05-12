@@ -1,3 +1,5 @@
+import { monthNames } from './dates';
+
 export default class EventOverlay {
 
     current;
@@ -6,9 +8,9 @@ export default class EventOverlay {
         this.base = document.querySelector('#event-dialog');
     }
 
-    initOverlay(date, month, year) {
+    initOverlay(date, saveEventCb) {
         const node = this.base.content.cloneNode(true);
-        node.querySelector('.event-details').textContent = `${date} ${month}, ${year}`;
+        node.querySelector('.event-details').textContent = `${date.getDate()} ${monthNames[date.getMonth()]}, ${date.getFullYear()}`;
 
         node.querySelector('.close').addEventListener('click', e => {
             this.disposeOverlay();
@@ -21,7 +23,7 @@ export default class EventOverlay {
             if(!desc.value.trim() || !title.value.trim()) {
                 alert('Please enter a valid value');
             } else {
-                console.log(title.value.trim(), desc.value.trim());
+                saveEventCb(date, title.value.trim(), desc.value.trim());
                 this.disposeOverlay();
             }
         });
