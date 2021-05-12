@@ -76,7 +76,7 @@ export default class Layout {
 
     debounceInput(fn, delay) {
         let timer;
-        return function(...args) {
+        return (...args) => {
             clearTimeout(timer);
             timer = setTimeout(() => fn(...args), delay);
         }

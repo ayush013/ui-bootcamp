@@ -1,7 +1,8 @@
 export default class Store {
-    constructor() {
+    constructor(httpService) {
         this._store = [];
-        this.getLocalStore();
+        this.httpService = httpService;
+        this.getStore();
     }
 
     getTodoById(id) {
@@ -38,13 +39,17 @@ export default class Store {
         return this._store[this._store.length - 1];
     }
 
-    getLocalStore() {
+    async getStore() {
         if (window.localStorage.todo) {
             this._store = JSON.parse(window.localStorage.todo)
+        } else {
+            this._store = await this.httpService.getAllTodos();
+            this.setStore();
         }
     }
 
     setStore() {
         window.localStorage.todo = JSON.stringify(this._store);
     }
+
 }
