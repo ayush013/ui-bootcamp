@@ -10,22 +10,50 @@
 
 <body class="min-h-screen w-full bg-gray-100 p-8">
     <div class="flex items-center gap-2 text-3xl font-semibold">
-        <button class="hover:bg-gray-200 duration-200 px-4 py-2 rounded scale-x-75 transform">&lt;</button>
-        <select class="text-2xl bg-transparent appearance-none p-2 hover:bg-gray-200 duration-200 rounded font-semibold cursor-pointer text-center" id="month-picker"></select>
-        <button class="hover:bg-gray-200 duration-200 px-4 py-2 rounded scale-x-75 transform">&gt;</button>
+        <select
+            class="text-2xl bg-transparent appearance-none p-2 hover:bg-gray-200 duration-200 rounded font-semibold cursor-pointer text-center"
+            id="month-picker"></select>
     </div>
 
     <div class="month-view grid grid-cols-7 mt-6" id="month-view">
-        
+
     </div>
 
     <template id="date-tile">
-        <div class="date-tile cursor-pointer bg-white p-4 flex col-span-1 flex-col border border-white hover:border-gray-300 duration-200 hover:bg-gray-50">
+        <div
+            class="date-tile cursor-pointer bg-white p-4 flex col-span-1 flex-col border border-white hover:border-gray-300 duration-200 hover:bg-gray-50">
             <div class="text-right w-full text-2xl font-semibold date-label">1</div>
             <div class="w-full h-10 flex items-end">
                 <a class="h-3 w-3 rounded-full date-event"></a>
             </div>
         </div>
     </template>
+
+    <template id="event-dialog">
+        <div
+            class="fixed bottom-0 w-full left-0 z-30 bg-gray-500 bg-opacity-50 h-screen event-dialog flex items-center justify-center p-5 ">
+            <div class="w-full md:w-1/2 bg-white shadow-2xl p-8">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-xl font-medium">Add Event - <span class="event-details"></span></h1>
+                    <a class="cursor-pointer close">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001">
+                            <path
+                                d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0014.143 5.857 19.94 19.94 0 0014.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="mt-6 flex flex-col gap-4">
+                    <input type="text" placeholder="Enter event title"
+                        class="p-3 bg-gray-100 hover:bg-gray-200 duration-200 rounded event-title">
+                    <textarea name="description" cols="30" rows="10" placeholder="Event Description"
+                        class="p-3 bg-gray-100 hover:bg-gray-200 duration-200 rounded event-desc"></textarea>
+                    <button
+                        class="w-full p-2 rounded bg-blue-500 hover:bg-blue-600 duration-200 text-center block text-white font-semibold text-xl save-event">Save</button>
+                </div>
+
+            </div>
+        </div>
+    </template>
 </body>
+
 </html>
