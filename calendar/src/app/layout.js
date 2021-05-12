@@ -17,28 +17,30 @@ export default class Layout {
             const node = this.baseNode.content.cloneNode(true);
             const date = new Date(year, month, i, 5, 30);
 
-            if(i === 1) {
+            if (i === 1) {
                 this.setDayHeader(date.getDay())
             }
 
-            node.querySelector('.date-tile').addEventListener('click', e => {
-                this.overlayService.initOverlay(date, saveEventCb);
+            const hasEvent = events.find(ev => ev.timestamp.slice(0, 10) === date.toISOString().slice(0, 10));
+            const eventLabel = node.querySelector('.date-event');
+
+            if (hasEvent) {
+                eventLabel.classList.remove('hidden');
+            }
+
+            node.querySelector('.date-tile').addEventListener('click', async () => {
+                const result = await this.overlayService.initOverlay(date, saveEventCb, hasEvent)
+                result && eventLabel.classList.remove('hidden');
             })
 
             node.querySelector('.date-label span').textContent = i;
 
-            node.querySelector('.date-event').style.backgroundColor =
+            eventLabel.style.backgroundColor =
                 this.colors[parseInt(Math.random() * this.colors.length, 10)];
 
 
             if (new Date().toISOString().slice(0, 10) === date.toISOString().slice(0, 10)) {
                 node.querySelector('.date-label span').classList.add('bg-blue-500', 'text-white');
-            }
-
-            const hasEvent = events.find(ev => ev.timestamp.slice(0, 10) === date.toISOString().slice(0, 10));
-
-            if (hasEvent) {
-                node.querySelector('.date-event').classList.remove('hidden');
             }
 
             this.monthWrapper.appendChild(node);
@@ -75,7 +77,7 @@ export default class Layout {
     }
 
     setDayHeader(startDay) {
-        for(let i = 0; i < days.length; i++) {
+        for (let i = 0; i < days.length; i++) {
             const node = this.dayNode.content.cloneNode(true);
             node.querySelector('.day-label').textContent = days[(startDay + i) % 7]
             this.monthWrapper.appendChild(node);
