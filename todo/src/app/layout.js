@@ -1,5 +1,4 @@
 export default class Layout {
-
     constructor(stateService) {
         this.baseNode = document.querySelector('#task');
         this.wrapperRef = document.querySelector('#tasks-wrapper');
@@ -11,9 +10,7 @@ export default class Layout {
     initLayout() {
         const data = this.stateService.getAllTodo();
         if (data.length) {
-            data.forEach(element => {
-                this.addLayout(element);
-            });
+            data.forEach(el => this.addLayout(el));
         }
     }
 
@@ -37,7 +34,7 @@ export default class Layout {
 
         const patchTodo = this.debounceInput(this.stateService.patchTodo.bind(this.stateService), 500);
 
-        input.addEventListener('keyup', e => patchTodo(data.id, e.target.value));
+        input.addEventListener('keyup', (e) => patchTodo(data.id, e.target.value));
         input.value = data.value;
 
         checkboxInput.addEventListener('change', (e) => {
@@ -53,10 +50,13 @@ export default class Layout {
 
         deleteBtn.addEventListener('click', () => {
             this.stateService.deleteTodo(data.id);
-            this.removeLayout(data.id)
+            this.removeLayout(data.id);
         });
 
-        this.wrapperRef.appendChild(node);
+        this.wrapperRef.insertBefore(
+            node,
+            this.wrapperRef.querySelector('.task-container')
+        );
     }
 
     removeLayout(id) {
@@ -79,8 +79,6 @@ export default class Layout {
         return (...args) => {
             clearTimeout(timer);
             timer = setTimeout(() => fn(...args), delay);
-        }
+        };
     }
-
-
 }

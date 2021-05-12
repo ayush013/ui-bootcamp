@@ -1,8 +1,6 @@
 export default class Store {
-    constructor(httpService) {
+    constructor() {
         this._store = [];
-        this.httpService = httpService;
-        this.getStore();
     }
 
     getTodoById(id) {
@@ -18,38 +16,42 @@ export default class Store {
         if (deleted) {
             this._store.splice(this._store.indexOf(deleted), 1);
         }
-        this.setStore();
+        this.setLocalStore();
     }
 
     patchTodo(id, value) {
         const node = this.getTodoById(id);
         node.value = value;
-        this.setStore();
+        this.setLocalStore();
     }
 
     changeStatus(id, status) {
         const node = this.getTodoById(id);
         node.done = status;
-        this.setStore();
+        this.setLocalStore();
     }
 
     addTodo(value) {
-        this._store.push({ id: parseInt(Math.random() * 100000, 10), value, done: false });
-        this.setStore();
+        this._store.push({
+            id: parseInt(Math.random() * 100000, 10),
+            value,
+            done: false,
+        });
+        this.setLocalStore();
         return this._store[this._store.length - 1];
     }
 
-    async getStore() {
-        if (window.localStorage.todo) {
-            this._store = JSON.parse(window.localStorage.todo)
-        } else {
-            this._store = await this.httpService.getAllTodos();
-            this.setStore();
-        }
+    getLocalStore() {
+        this._store = JSON.parse(window.localStorage.todo);
     }
 
-    setStore() {
+    setLocalStore() {
         window.localStorage.todo = JSON.stringify(this._store);
+    }
+
+    setStore(data) {
+        this._store = data;
+        this.setLocalStore();
     }
 
 }
