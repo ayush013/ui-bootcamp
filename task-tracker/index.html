@@ -9,34 +9,36 @@
 </head>
 
 <body class="min-h-screen w-full bg-blue-50 bg-opacity-50 p-10 flex flex-col gap-8">
-    <div class="p-6 bg-white rounded-lg">
+    <div class="p-6 bg-white rounded-lg flex gap-4 items-center justify-between">
         <h1 class="text-2xl font-semibold">Sprint #4</h1>
+        <button class="bg-blue-50 py-2 px-3 text-base text-blue-500 font-semibold rounded" id="create-task">+ Create
+            Task</button>
     </div>
     <div class="grid grid-cols-4 gap-6 flex-1 z-0">
         <div class="col-span-1">
             <h2 class="font-bold text-gray-500 mb-2">Backlog</h2>
-            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll">
-
+            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll" id="backlog">
             </div>
         </div>
         <div class="col-span-1">
             <h2 class="font-bold text-blue-400 mb-2">In Progress</h2>
-            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3" id="backlog"></div>
+            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll"></div>
         </div>
         <div class="col-span-1">
             <h2 class="font-bold text-purple-500 mb-2">In Review</h2>
-            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3"></div>
+            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll"></div>
         </div>
         <div class="col-span-1">
             <h2 class="font-bold text-green-500 mb-2">Done</h2>
-            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3"></div>
+            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll"></div>
         </div>
     </div>
     <template id="task">
-        <div class="task w-full shadow-md hover:bg-gray-50 cursor-move p-2 bg-white rounded-lg">
+        <div
+            class="task w-full shadow-md hover:bg-gray-50 cursor-move px-2 py-4 bg-white rounded-lg select-none overflow-hidden">
             <p class="category text-xs font-semibold uppercase"></p>
             <h3 class="font-semibold title"></h3>
-            <p class="text-sm text-gray-400 font-medium description max-h-16 overflow-hidden"></p>
+            <p class="text-sm text-gray-400 description max-h-24 overflow-hidden"></p>
         </div>
     </template>
 
@@ -53,22 +55,23 @@
                         </svg>
                     </a>
                 </div>
-    
+
                 <input type="text" name="title" id="title" placeholder="Enter Title"
                     class="bg-gray-100 p-3 rounded hover:bg-gray-200 duration-200">
-                <select name="category" id="category" placeholder="Select Category" class="bg-gray-100 p-3 rounded hover:bg-gray-200 duration-200">
+                <select name="category" id="category" placeholder="Select Category"
+                    class="bg-gray-100 p-3 rounded hover:bg-gray-200 duration-200">
                     <option value="Frontend">Frontend</option>
                     <option value="Middleware">Middleware</option>
                     <option value="PM">Project Management</option>
                     <option value="UI/UX">UI/UX</option>
                 </select>
-                <textarea class="bg-gray-100 p-3 rounded hover:bg-gray-200 duration-200" name="description" id="description"
-                    cols="30" rows="15" placeholder="Enter Description" noresize></textarea>
+                <textarea class="bg-gray-100 p-3 rounded hover:bg-gray-200 duration-200" name="description"
+                    id="description" cols="30" rows="15" placeholder="Enter Description" noresize></textarea>
                 <button class="bg-blue-500 p-3 text-xl text-white font-semibold w-full rounded" id="save">Save</button>
             </div>
         </div>
     </template>
-    
+
 </body>
 
 </html>

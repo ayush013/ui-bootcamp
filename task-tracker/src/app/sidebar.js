@@ -19,7 +19,8 @@ export default class Sidebar {
                 node.getElementById('category').disabled = true;
             } else {
                 node.getElementById('save').addEventListener('click', e => {
-                    res({ title, description, category });
+                    res({ title: title.value, description: description.value, category: category.value });
+                    this.disposeSidebar();
                 });
             }
 
@@ -29,7 +30,7 @@ export default class Sidebar {
 
     disposeSidebar(cb) {
         document.body.removeChild(document.getElementById('task-sidebar'));
-        cb(false);
+        cb && cb(false);
     }
 
     initCloseListener(node, cb) {
