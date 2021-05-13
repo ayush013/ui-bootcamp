@@ -1,11 +1,12 @@
 export default class Store {
+
     constructor() {
         this._store = [];
         this.getLocalStore();
     }
 
     saveToStore(data) {
-        this._store.push({ ...data, id: Math.random() * 10000 });
+        this._store.push({ ...data, id: parseInt(Math.random() * 10000, 10), status: 0 });
         this.setLocalStore();
     }
 
@@ -19,7 +20,18 @@ export default class Store {
         window.localStorage.setItem('tasks', JSON.stringify(this._store));
     }
 
-    getStore() {
+    getAllTasks() {
         return this._store;
     }
+
+    getTaskById(id) {
+        return this._store.find(el => el.id === id);
+    }
+
+    patchStatus(id, status) {
+        const node = this.getTaskById(id);
+        node ? node.status = status : '';
+        this.setLocalStore();
+    }
+
 }

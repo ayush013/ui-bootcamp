@@ -4,12 +4,12 @@ export default class Layout {
 
     constructor() {
         this.taskNode = document.getElementById('task');
-        this.baseWrapper = document.getElementById('backlog');
+        this.baseWrappers = document.querySelectorAll('.dropzone');
         this.createBtn = document.getElementById('create-task');
     }
 
 
-    createTaskLayout({ title, description, id, category }) {
+    createTaskLayout({ title, description, id, category, status }) {
         const node = this.taskNode.content.cloneNode(true);
         node.querySelector('.task').id = id;
         node.querySelector('.title').textContent = title;
@@ -17,7 +17,7 @@ export default class Layout {
         node.querySelector('.category').textContent = category;
         node.querySelector('.category').style.color = colorClasses[parseInt(Math.random() * colorClasses.length, 10)];
 
-        this.baseWrapper.appendChild(node);
+        this.baseWrappers[status || 0].appendChild(node);
 
         return true;
     }

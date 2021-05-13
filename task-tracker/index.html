@@ -17,25 +17,25 @@
     <div class="grid grid-cols-4 gap-6 flex-1 z-0">
         <div class="col-span-1">
             <h2 class="font-bold text-gray-500 mb-2">Backlog</h2>
-            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll" id="backlog">
+            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll" id="drop-0">
             </div>
         </div>
         <div class="col-span-1">
             <h2 class="font-bold text-blue-400 mb-2">In Progress</h2>
-            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll"></div>
+            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll" id="drop-1"></div>
         </div>
         <div class="col-span-1">
             <h2 class="font-bold text-purple-500 mb-2">In Review</h2>
-            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll"></div>
+            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll" id="drop-2"></div>
         </div>
         <div class="col-span-1">
             <h2 class="font-bold text-green-500 mb-2">Done</h2>
-            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll"></div>
+            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll" id="drop-3"></div>
         </div>
     </div>
     <template id="task">
-        <div
-            class="task w-full shadow-md hover:bg-gray-50 cursor-move px-2 py-4 bg-white rounded-lg select-none overflow-hidden">
+        <div draggable="true"
+            class="task duration-500 w-full shadow-md hover:bg-gray-50 cursor-move px-2 py-4 bg-white rounded-lg select-none overflow-hidden">
             <p class="category text-xs font-semibold uppercase"></p>
             <h3 class="font-semibold title"></h3>
             <p class="text-sm text-gray-400 description max-h-24 overflow-hidden"></p>
