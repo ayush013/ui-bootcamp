@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* Basic reset */
 
 html {
@@ -29,4 +28,12 @@ body {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
+}
+
+.dropzone {
+  height: calc(100vh - 12rem);
+}
+
+.task {
+  min-height: 7rem;
 }
