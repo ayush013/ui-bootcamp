@@ -12,7 +12,7 @@
     <div class="p-6 bg-white rounded-lg">
         <h1 class="text-2xl font-semibold">Sprint #4</h1>
     </div>
-    <div class="grid grid-cols-4 gap-6 flex-1">
+    <div class="grid grid-cols-4 gap-6 flex-1 z-0">
         <div class="col-span-1">
             <h2 class="font-bold text-gray-500 mb-2">Backlog</h2>
             <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3 overflow-y-scroll">
@@ -21,7 +21,7 @@
         </div>
         <div class="col-span-1">
             <h2 class="font-bold text-blue-400 mb-2">In Progress</h2>
-            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3"></div>
+            <div class="bg-white rounded-lg w-full p-4 dropzone flex flex-col gap-3" id="backlog"></div>
         </div>
         <div class="col-span-1">
             <h2 class="font-bold text-purple-500 mb-2">In Review</h2>
@@ -39,6 +39,36 @@
             <p class="text-sm text-gray-400 font-medium description max-h-16 overflow-hidden"></p>
         </div>
     </template>
+
+    <template id="sidebar">
+        <div class="bg-gray-600 bg-opacity-50 fixed w-full h-screen top-0 left-0 z-10" id="task-sidebar">
+            <div class="min-h-screen bg-white md:w-1/3 w-full p-6 z-50 fixed right-0 top-0 flex flex-col gap-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-2xl font-semibold">Task</h1>
+                    <a class="close cursor-pointer" id="close">
+                        <svg height="329pt" class="h-4 w-4 opacity-60" viewBox="0 0 329.26933 329" width="329pt"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0" />
+                        </svg>
+                    </a>
+                </div>
+    
+                <input type="text" name="title" id="title" placeholder="Enter Title"
+                    class="bg-gray-100 p-3 rounded hover:bg-gray-200 duration-200">
+                <select name="category" id="category" placeholder="Select Category" class="bg-gray-100 p-3 rounded hover:bg-gray-200 duration-200">
+                    <option value="Frontend">Frontend</option>
+                    <option value="Middleware">Middleware</option>
+                    <option value="PM">Project Management</option>
+                    <option value="UI/UX">UI/UX</option>
+                </select>
+                <textarea class="bg-gray-100 p-3 rounded hover:bg-gray-200 duration-200" name="description" id="description"
+                    cols="30" rows="15" placeholder="Enter Description" noresize></textarea>
+                <button class="bg-blue-500 p-3 text-xl text-white font-semibold w-full rounded" id="save">Save</button>
+            </div>
+        </div>
+    </template>
+    
 </body>
 
 </html>
