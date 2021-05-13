@@ -37,3 +37,16 @@ body {
 .task {
   min-height: 7rem;
 }
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.sidebar-wrapper {
+  animation: slideIn 400ms ease-out;
+}

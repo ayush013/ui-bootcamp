@@ -17,6 +17,11 @@ export default class Layout {
         node.querySelector('.category').textContent = category;
         node.querySelector('.category').style.color = colorClasses[parseInt(Math.random() * colorClasses.length, 10)];
 
+        node.querySelector('.task').addEventListener('click', (e) => {
+            const sidebar = new Sidebar();
+            sidebar.initSidebar({ title, description, id, category, status });
+        },);
+
         this.baseWrappers[status || 0].appendChild(node);
 
         return true;
