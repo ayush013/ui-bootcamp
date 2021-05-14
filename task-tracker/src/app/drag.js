@@ -6,6 +6,7 @@ export default class Drag {
     dropZoneClasses = ['bg-blue-50', 'border-gray-200']
 
     initDragListener(onDrag) {
+
         document.addEventListener('dragstart', (e) => {
             this.dragged = e.target;
             this.dragged.style.opacity = 0;
@@ -38,6 +39,7 @@ export default class Drag {
                 onDrag(zone, taskId);
             }
         });
+
     }
 
 
