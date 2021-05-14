@@ -1,6 +1,7 @@
 import HttpClient from './app/http-client';
 import Store from './app/store';
 import View from './app/view';
+import ViewportObserver from './app/viewport-observer';
 import './style.scss'
 
 export const loadApp = () => {
@@ -8,6 +9,7 @@ export const loadApp = () => {
     const viewService = new View();
     const httpService = new HttpClient();
     const storeService = new Store();
+    const viewportObserver = new ViewportObserver();
 
     let searchTerm = '';
     let resultCount = 0;
@@ -46,9 +48,12 @@ export const loadApp = () => {
         }
     }
 
-    viewService.initLoadMoreListener(async () => {
-        await fetchResults(storeService.storeCount);
+    viewportObserver.initObserver(viewService.loadMore, (e) => {
+        if(e.some(el => el.isIntersecting)) {
+            storeService.storeCount && fetchResults(storeService.storeCount);
+        }
     })
+
 
     viewService.initSearchListener(async e => {
         if (searchTerm) {
