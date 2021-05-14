@@ -3,6 +3,10 @@ export default class Store {
         this._store = [];
     }
 
+    get storeCount() {
+        return this._store.length;
+    }
+
     getStore() {
         return this._store;
     }

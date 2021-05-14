@@ -3,12 +3,14 @@ export default class View {
         this.resultWrapper = document.getElementById('results-wrapper');
         this.resultNode = document.getElementById('result');
         this.searchIp = document.getElementById('search');
+        this.loadMore = document.getElementById('load-more');
     }
 
     renderResult(data) {
         const node = this.resultNode.content.cloneNode(true);
         node.querySelector('img').src = data.url;
         node.querySelector('img').alt = data.title;
+        node.querySelector('img').title = data.title;
         node.querySelector('.result').id = data.id;
         node.querySelector('.result').href = data.link;
 
@@ -38,6 +40,18 @@ export default class View {
             timer = setTimeout(() => fn.apply(this, args), delay);
         }
 
+    }
+
+    hideLoadBtn() {
+        this.loadMore.classList.add('hidden');
+    }
+
+    showLoadBtn() {
+        this.loadMore.classList.remove('hidden');
+    }
+
+    initLoadMoreListener(callback) {
+        this.loadMore.addEventListener('click', callback);
     }
 
 

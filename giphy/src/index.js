@@ -10,6 +10,45 @@ export const loadApp = () => {
     const storeService = new Store();
 
     let searchTerm = '';
+    let resultCount = 0;
+
+    const resetView = () => {
+        viewService.clearView();
+        viewService.clearSearch();
+        storeService.clearStore();
+        viewService.hideLoadBtn();
+        resultCount = 0;
+    };
+
+    const fetchResults = async (offset = 0) => {
+        try {
+            let results = await httpService.getSearchResults(searchTerm, offset);
+
+            resultCount = results.pagination.total_count;
+            results = storeService.transformData(results.data);
+
+            if (resultCount > storeService.storeCount) {
+                viewService.showLoadBtn();
+            } else {
+                viewService.hideLoadBtn();
+            }
+
+            storeService.setStore(results);
+
+            results.forEach(result => {
+                viewService.renderResult(result);
+            });
+
+        } catch (e) {
+            console.error(e);
+            alert('Failed to fetch results');
+            resetView();
+        }
+    }
+
+    viewService.initLoadMoreListener(async () => {
+        await fetchResults(storeService.storeCount);
+    })
 
     viewService.initSearchListener(async e => {
         if (searchTerm) {
@@ -20,29 +59,10 @@ export const loadApp = () => {
         searchTerm = e.target.value?.trim();
 
         if (searchTerm) {
-            try {
-                let results = await httpService.getSearchResults(searchTerm);
-
-                results = storeService.transformData(results.data);
-
-                storeService.setStore(results);
-
-                results.forEach(result => {
-                    viewService.renderResult(result);
-                });
-
-            } catch (e) {
-                console.error(e);
-                alert('Failed to fetch results');
-                viewService.clearView();
-                viewService.clearSearch();
-                storeService.clearStore();
-            }
+           await fetchResults();
         } else {
-            viewService.clearView();
-            storeService.clearStore();
+            resetView();
         }
-
     });
 
 }
