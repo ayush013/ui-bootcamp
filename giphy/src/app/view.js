@@ -1,14 +1,16 @@
 export default class View {
     constructor() {
-        this.resultWrapper = document.getElementById('result-wrapper');
+        this.resultWrapper = document.getElementById('results-wrapper');
         this.resultNode = document.getElementById('result');
-        this.searchNode = document.getElementById('search');
+        this.searchIp = document.getElementById('search');
     }
 
     renderResult(data) {
         const node = this.resultNode.content.cloneNode(true);
-        node.querySelector('img').src = data.src;
-        node.querySelector('img').alt = data.alt;
+        node.querySelector('img').src = data.url;
+        node.querySelector('img').alt = data.title;
+        node.querySelector('.result').id = data.id;
+        node.querySelector('.result').href = data.link;
 
         this.resultWrapper.appendChild(node);
     }
@@ -17,9 +19,13 @@ export default class View {
         this.resultWrapper.innerHTML = '';
     }
 
+    clearSearch() {
+        this.searchIp.value = '';
+    }
+
     initSearchListener(callback) {
         const deboncedSearchCb = this.debounceSearch(callback, 1000);
-        this.searchNode.addEventListener('keypress', e => {
+        this.searchIp.addEventListener('keyup', e => {
             deboncedSearchCb(e);
         })
     }
