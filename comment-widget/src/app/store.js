@@ -15,10 +15,10 @@ export default class Store {
 
         if (id) {
             const parent = this.findComment(id);
-            newNode = new Comment(comment, parent.level + 1);
+            newNode = new Comment(comment, parent.level + 1, id);
             parent.replies.push(newNode);
         } else {
-            newNode = new Comment(comment, 0);
+            newNode = new Comment(comment, 0, '');
             this._store.push(newNode);
         }
 
@@ -26,12 +26,27 @@ export default class Store {
         return newNode;
     }
 
+    deleteComment(id) {
+        const parent = this.findComment(id).parent;
+
+        if (parent) {
+            const comments = this.findComment(parent);
+            const idx = comments.replies.findIndex(el => el.id === id);
+            comments.replies.splice(idx, 1);
+        } else {
+            const idx = this.comments.findIndex(el => el.id === id);
+            this.comments.splice(idx, 1);
+        }
+
+        this.setLocalStore();
+    }
+
     findComment(id, comments = this.comments) {
 
         for (let comment of comments) {
             if (comment.replies.length) {
                 const result = this.findComment(id, comment.replies);
-                if(result !== -1) {
+                if (result !== -1) {
                     return result;
                 }
             }

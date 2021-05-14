@@ -1,5 +1,7 @@
 export default class Views {
 
+    colors = ['#F87171', '#FBBF24', '#34D399', '#60A5FA', '#818CF8', '#A78BFA', '#F472B6'];
+
     constructor() {
         this.commentNode = document.getElementById('comment');
         this.baseWrapper = document.getElementById('comment-wrapper');
@@ -23,9 +25,10 @@ export default class Views {
         const node = this.commentNode.content.cloneNode(true);
         node.querySelector('.comment').id = comment.id;
         node.querySelector('.comment').classList.add(`level-${comment.level}`);
+        node.querySelector('.comment .content').style.backgroundColor = `${this.colors[comment.level % 7]}20`;
         node.querySelector('.content').textContent = comment.title;
 
-        this.renderCommentInput(node.querySelector('.comment-box'), comment.level);
+        this.renderCommentInput(node.querySelector('.comment-box'));
 
         return node;
     }
@@ -42,9 +45,8 @@ export default class Views {
         }
     }
 
-    renderCommentInput(baseWrapper = this.baseWrapper, level = 0) {
+    renderCommentInput(baseWrapper = this.baseWrapper) {
         const node = this.input.content.cloneNode(true);
-        node.querySelector('textarea').classList.add(`input-level-${level}`);
         baseWrapper.appendChild(node);
     }
 
@@ -54,7 +56,9 @@ export default class Views {
                 const id = parseInt(e.target.parentNode.parentNode.id, 10);
                 callback(e.target.value, id);
                 e.target.value = '';
-                e.target.parentNode.classList.add('hidden');
+                if(e.target.parentNode.id !== 'comment-wrapper') {
+                    e.target.parentNode.classList.add('hidden');
+                }
             }
         })
     }
@@ -64,6 +68,15 @@ export default class Views {
             if (e.target.classList.contains('reply')) {
                 const commentBox = e.target.parentNode.parentNode.querySelector('.comment-box');
                 commentBox.classList.contains('hidden') ? commentBox.classList.remove('hidden') : commentBox.classList.add('hidden');
+            }
+        });
+    }
+
+    initDeleteListener(callback) {
+        document.addEventListener('click', e => {
+            if (e.target.classList.contains('delete')) {
+                e.target.parentNode.parentNode.remove();
+                callback(parseInt(e.target.parentNode.parentNode.id, 10));
             }
         });
     }

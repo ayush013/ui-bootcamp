@@ -10,31 +10,32 @@
 <body class="min-h-screen w-full p-8">
     <div class="w-full md:w-2/3 flex flex-col items-center mx-auto gap-y-4" id="comment-wrapper">
 
-        <template id="comment">
-            <div class="comment w-full">
-                <div class="content font-medium p-3 text-gray-700 bg-gray-100 rounded-full">
-                    
-                </div>
-                <div class="actions font-semibold text-xs flex gap-2 mt-2 pl-4">
-                    <a class="cursor-pointer text-blue-500 reply">Reply</a>
-                    <a class="cursor-pointer text-red-400 delete">Delete</a>
-                </div>
-                <div class="comment-box pt-2 hidden">
-
-                </div>
-                <div class="nesting pl-4 pt-4">
-
-                </div>
-            </div>
-        </template>
-
-        <template id="input">
-            <textarea name="comment" cols="30" rows="1"
-                class="p-2 border border-gray-200 w-full hover:shadow-md duration-200 rounded resize-none comment-input"
-                placeholder="Type a comment"></textarea>
-        </template>
-
     </div>
+
+    <template id="comment">
+        <div class="comment w-full">
+            <div class="content font-medium p-3 text-gray-700 bg-gray-100 rounded-full">
+                
+            </div>
+            <div class="actions font-semibold text-xs flex gap-2 mt-2 pl-4">
+                <a class="cursor-pointer text-blue-500 reply">Reply</a>
+                <a class="cursor-pointer text-red-400 delete">Delete</a>
+            </div>
+            <div class="comment-box pt-2 hidden">
+
+            </div>
+            <div class="nesting pl-4 pt-4">
+
+            </div>
+        </div>
+    </template>
+
+    <template id="input">
+        <textarea name="comment" cols="30" rows="1"
+            class="p-2 border border-gray-200 w-full hover:shadow-md duration-200 rounded resize-none comment-input"
+            placeholder="Type a comment"></textarea>
+    </template>
+
 
 </body>
 

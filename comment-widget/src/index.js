@@ -12,7 +12,12 @@ export const loadApp = () => {
     viewService.initCommentListener((comment, id) => {
         const newComment = store.saveComment(comment, id || 0);
         viewService.renderCommentNode(newComment, id);
+    });
+
+    viewService.initDeleteListener((id) => {
+        store.deleteComment(id);
     })
 }
+
 
 loadApp();
