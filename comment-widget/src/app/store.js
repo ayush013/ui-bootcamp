@@ -29,7 +29,6 @@ export default class Store {
     findComment(id, comments = this.comments) {
 
         for (let comment of comments) {
-            console.log(comment.id, id)
             if (comment.replies.length) {
                 const result = this.findComment(id, comment.replies);
                 if(result !== -1) {

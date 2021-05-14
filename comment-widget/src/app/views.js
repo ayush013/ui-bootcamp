@@ -9,13 +9,13 @@ export default class Views {
         this.initReplyListener();
     }
 
-    renderCommentNode(comment) {
+    renderCommentNode(comment, parentId) {
         const node = this.createCommentNode(comment);
 
         if (comment.level === 0) {
             this.baseWrapper.appendChild(node);
         } else {
-
+            document.getElementById(parentId).querySelector(`.nesting`).appendChild(node);
         }
     }
 
@@ -51,11 +51,10 @@ export default class Views {
     initCommentListener(callback) {
         document.addEventListener('keyup', e => {
             if (e.target.classList.contains('comment-input') && e.code === 'Enter') {
-                console.log(e)
-                const level = parseInt(e.target.classList.value.split('input-level-').pop());
-                const id = e.target.parentNode.parentNode.id;
-                callback(e.target.value, level, id);
+                const id = parseInt(e.target.parentNode.parentNode.id, 10);
+                callback(e.target.value, id);
                 e.target.value = '';
+                e.target.parentNode.classList.add('hidden');
             }
         })
     }
