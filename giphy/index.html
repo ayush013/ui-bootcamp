@@ -9,6 +9,9 @@
 </head>
 
 <body class="bg-gray-100 p-10 min-h-screen w-full items-center flex flex-col">
+    <div class="fixed w-full left-0 top-0 h-1 bg-gray-300 z-40 hidden" id="loader">
+        <div class="loader h-full w-1/2 bg-blue-500"></div>
+    </div>
     <input type="search" name="search" id="search" class="p-4 shadow-md text-xl w-2/3" placeholder="Search for GIFs">
     <div class="flex gap-6 flex-wrap mt-6 justify-center" id="results-wrapper">
 

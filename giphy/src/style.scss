@@ -30,3 +30,14 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@keyframes loadingInfinite {
+  0% { transform: scaleX(0.2) translateX(0)}
+  50% { transform: scaleX(0.8) translateX(100%)}
+  100% { transform: scaleX(0.2) translateX(0)}
+}
+
+.loader {
+  transform-origin: left;
+  animation: loadingInfinite 2000ms ease-in 0s infinite alternate;
+}

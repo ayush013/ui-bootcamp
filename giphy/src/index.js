@@ -19,6 +19,7 @@ export const loadApp = () => {
         viewService.clearSearch();
         storeService.clearStore();
         viewService.hideLoadBtn();
+        viewService.hideLoader();
         resultCount = 0;
     };
 
@@ -41,6 +42,8 @@ export const loadApp = () => {
                 viewService.renderResult(result);
             });
 
+            viewService.hideLoader();
+
         } catch (e) {
             console.error(e);
             alert('Failed to fetch results');
@@ -50,6 +53,7 @@ export const loadApp = () => {
 
     viewportObserver.initObserver(viewService.loadMore, (e) => {
         if(e.some(el => el.isIntersecting)) {
+            viewService.showLoader();
             storeService.storeCount && fetchResults(storeService.storeCount);
         }
     })

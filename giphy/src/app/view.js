@@ -4,6 +4,7 @@ export default class View {
         this.resultNode = document.getElementById('result');
         this.searchIp = document.getElementById('search');
         this.loadMore = document.getElementById('load-more');
+        this.loader = document.getElementById('loader');
     }
 
     renderResult(data) {
@@ -28,6 +29,7 @@ export default class View {
     initSearchListener(callback) {
         const deboncedSearchCb = this.debounceSearch(callback, 1000);
         this.searchIp.addEventListener('keyup', e => {
+            this.showLoader();
             deboncedSearchCb(e);
         })
     }
@@ -48,6 +50,14 @@ export default class View {
 
     showLoadBtn() {
         this.loadMore.classList.remove('hidden');
+    }
+
+    hideLoader() {
+        this.loader.classList.add('hidden');
+    }
+
+    showLoader() {
+        this.loader.classList.remove('hidden');
     }
 
     initLoadMoreListener(callback) {
