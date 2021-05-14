@@ -8,6 +8,16 @@
     <title>Giphy - Search Engine</title>
 </head>
 
-<body>
+<body class="bg-gray-100 p-10 min-h-screen w-full items-center flex flex-col">
+    <input type="search" name="search" id="search" class="p-4 shadow-md text-xl w-2/3" placeholder="Search for GIFs">
+    <div class="flex gap-6 flex-wrap mt-6 justify-center" id="results-wrapper">
+
+    </div>
+    <template id="result">
+        <div class="result p-2 rounded shadow-md">
+            <img src="https://media.giphy.com/media/OfkGZ5H2H3f8Y/giphy.gif" alt="GIF" class="h-64">
+        </div>
+    </template>
 </body>
+
 </html>
