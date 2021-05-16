@@ -5,7 +5,8 @@ export const loadApp = () => {
 
     new Carousel({
         autoplay: true,
-        duration: 5000
+        duration: 1000,
+        pauseOnHover: true
     });
 }
 

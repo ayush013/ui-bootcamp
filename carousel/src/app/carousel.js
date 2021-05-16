@@ -3,7 +3,8 @@ export default class Carousel {
     defaultOptions = {
         autoplay: true,
         duration: 2000,
-        dots: false
+        dots: false,
+        pauseOnHover: false
     };
 
     constructor(options = this.defaultOptions) {
@@ -28,7 +29,7 @@ export default class Carousel {
         // if(typeof autoplay)
     }
 
-    initCarousel({ autoplay, duration, dots }) {
+    initCarousel({ autoplay, duration, dots, pauseOnHover }) {
         let slides = this.baseWrapper.querySelectorAll('.slide');
 
         slides = Array.from(slides);
@@ -55,24 +56,41 @@ export default class Carousel {
 
         this.baseWrapper.appendChild(innerFragment);
 
-        let currentSlide = 1;
+        let slide = { current: 1 };
         let timer;
 
         if (autoplay) {
-            timer = this.autoplayCarousel(duration, () => {
+            timer = this.autoplayCarousel(duration, innerDiv, slide, width, slides);
+        }
 
-                innerDiv.style.transform = `translateX(-${currentSlide * width}px)`;
-                currentSlide = (currentSlide + 1) % slides.length;
-
-            });
+        if (pauseOnHover) {
+            this.initPauseOnHover((type) => {
+                if (type === 'mouseenter') {
+                    clearTimeout(timer);
+                } else {
+                    timer = this.autoplayCarousel(duration, innerDiv, slide, width, slides);
+                }
+            })
         }
 
     }
 
-    autoplayCarousel(duration, callback) {
+    autoplayCarousel(duration, innerDiv, slide, width, slides) {
         return setInterval(() => {
-            callback();
+            innerDiv.style.transform = `translateX(-${slide.current * width}px)`;
+            slide.current = (slide.current + 1) % slides.length;
         }, duration);
     }
+
+    initPauseOnHover(callback) {
+        this.baseWrapper.addEventListener('mouseenter', () => {
+            callback('mouseenter');
+        });
+
+        this.baseWrapper.addEventListener('mouseleave', () => {
+            callback('mouseleave');
+        });
+    }
+
 
 }
