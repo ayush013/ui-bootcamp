@@ -1,8 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
 /* Basic reset */
 
 html {
@@ -21,6 +16,8 @@ body {
     "Ubuntu", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 1rem;
   font-weight: 400;
+  min-height: 100vh;
+  width: 100%;
 }
 
 *,
