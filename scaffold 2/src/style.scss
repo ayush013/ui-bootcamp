@@ -18,8 +18,6 @@ body {
   font-weight: 400;
   min-height: 100vh;
   width: 100%;
-  display: flex;
-  justify-content: center;
   padding: 2rem;
 }
 
@@ -29,6 +27,11 @@ body {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
+}
+
+#wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .todo {

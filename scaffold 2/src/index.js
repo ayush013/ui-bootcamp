@@ -1,7 +1,8 @@
+import Views from './app/views';
 import './style.scss'
 
-export const loadApp = () => {
-
+export const render = () => {
+    const viewService = new Views();
 }
 
-loadApp();
+render();
