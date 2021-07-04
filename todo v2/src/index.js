@@ -20,8 +20,8 @@ export const render = () => {
     });
 
 
-    viewService.onTaskChange((id, value) => {
-        storeService.patchNote(id, value);
+    viewService.onTaskChange(({ id, title, done }) => {
+        storeService.patchNote({ id, title, done });
     });
 
 }

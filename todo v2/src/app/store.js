@@ -25,11 +25,19 @@ export default class Store {
         return note;
     }
 
-    patchNote(id, title) {
+    patchNote(value) {
+        const { title, id, done } = value;
+
         const note = this._store.find(el => el.id === id);
 
-        if(note) {
-            note.title = title;
+        if (note) {
+            if(title !== undefined) {
+                note.title = title;
+            }
+            if(done !== undefined) {
+                note.done = done;
+            }
+
             this.setLocalStore();
             return true;
         }

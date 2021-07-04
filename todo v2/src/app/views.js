@@ -40,10 +40,18 @@ export default class Views {
             timer = setTimeout(() => {
                 if (e.target.classList.contains(TASK_INPUT)) {
                     const parent = e.target.closest('.todo-task');
-                    callback(parseInt(parent.id, 10), e.target.value)
+                    callback({ id: parseInt(parent.id, 10), title: e.target.value })
                 }
             }, 500);
         });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.type === 'checkbox') {
+                const parent = e.target.closest('.todo-task');
+                callback({ id: parseInt(parent.id, 10), done: e.target.checked })
+            }
+        });
+
     }
 
     renderNote(note, first = false) {
