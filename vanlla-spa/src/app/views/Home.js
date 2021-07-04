@@ -5,4 +5,8 @@ export default class Home extends BaseView {
         super();
         this.setTitle('Home');
     }
+
+    getHTML() {
+        return `<h1>Home</h1>`
+    }
 }

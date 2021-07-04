@@ -5,4 +5,9 @@ export default class About extends BaseView {
         super();
         this.setTitle('About');
     }
+
+    getHTML() {
+        return `<h1>About</h1>`
+    }
+
 }

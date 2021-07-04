@@ -1,11 +1,15 @@
 export default class Router {
 
     constructor(routes) {
-        this.initRouteHandler();
         this.routes = routes;
+        this.outlet = document.getElementById('router-outlet');
+
+        this.initRouteHandler();
     }
 
     initRouteHandler() {
+        this.navigate();
+
         document.body.addEventListener('click', (e) => {
             if (e.target.classList.contains('nav-link')) {
                 e.preventDefault();
@@ -24,6 +28,8 @@ export default class Router {
         }
 
         const view = new matchRoute.view();
+
+        this.outlet.innerHTML = view.getHTML();
 
         return matchRoute.url;
     }

@@ -5,5 +5,9 @@ export default class BaseView {
         document.title = title;
     }
 
+    getHTML() {
+        return `<div></div>`
+    }
+
 
 } 

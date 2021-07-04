@@ -12,7 +12,9 @@ const ROUTES = [
 
 
 export const loadApp = () => {
-    new Router(ROUTES);
+
+        new Router(ROUTES);
+
 }
 
 loadApp();

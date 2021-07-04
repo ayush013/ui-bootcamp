@@ -5,4 +5,8 @@ export default class Settings extends BaseView {
         super();
         this.setTitle('Settings');
     }
+
+    getHTML() {
+        return `<h1>Settings</h1>`
+    }
 }
