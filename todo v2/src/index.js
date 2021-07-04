@@ -14,7 +14,6 @@ export const render = () => {
     
 
     viewService.onEnterPress((value) => {
-        console.log(value)
         const note = storeService.addNote(value);
 
         viewService.renderNote(note, true);
