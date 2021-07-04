@@ -7,7 +7,11 @@ export default class About extends BaseView {
     }
 
     getHTML() {
-        return `<h1>About</h1>`
+        return `<h1>About</h1>
+        <p class="mt-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla facere obcaecati dolore. 
+        Et dolorum laboriosam iure, praesentium, molestiae atque fuga quod sapiente inventore vero numquam optio
+         ipsa exercitationem aspernatur tempore.</p>
+        `
     }
 
 }
