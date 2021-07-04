@@ -53,6 +53,10 @@ body {
       border-radius: 0.5rem 0 0 0.5rem;
       cursor: pointer;
 
+      .title {
+        pointer-events: none;
+      }
+
       &:hover {
         background-color: $white;
       }

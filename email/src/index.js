@@ -8,7 +8,6 @@ export const loadApp = async () => {
 
     const emails = await httpService.getEmail();
 
-
     renderer.setState(emails);
 }
 

@@ -13,11 +13,18 @@ export default class Renderer {
                 return true;
             }
         });
-        
+
+        this.viewService.onListItemClick((id) => {
+            const activeIdx = this.store.findIndex((el) => {
+                return el.id === parseInt(id.split('-').pop(), 10)
+            })
+            render(this.store, activeIdx);
+        })
+
     }
 
     setState(items) {
         this.store.push(...items);
     }
 
-} 
+}

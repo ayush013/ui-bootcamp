@@ -21,6 +21,7 @@ export default class View {
         template.querySelector('.title').textContent = title;
         template.querySelector('.content').textContent = body;
 
+        this.wrapper.querySelector('.email-body').innerHTML = ''
         this.wrapper.querySelector('.email-body').appendChild(template);
     }
 
@@ -43,6 +44,7 @@ export default class View {
             this.renderListItem(item, listFragment, activeIdx === i)
         }) 
 
+        this.wrapper.querySelector('.email-list').innerHTML = ''
         this.wrapper.querySelector('.email-list').appendChild(listFragment);
 
         const activeEl = state[activeIdx];
