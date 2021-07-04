@@ -23,7 +23,7 @@ export default class Router {
             matchRoute = this.routes[0];
         }
 
-        matchRoute.view();
+        const view = new matchRoute.view();
 
         return matchRoute.url;
     }
