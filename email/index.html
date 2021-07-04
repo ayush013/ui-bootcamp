@@ -7,41 +7,20 @@
     <title>Email</title>
   </head>
 
-  <body class="email">
-    <div class="email-list">
-      <div class="email-list-item">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ea
-        quam iure cumque tempore,
-      </div>
-      <div class="email-list-item">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ea
-        quam iure cumque tempore,
-      </div>
-      <div class="email-list-item">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ea
-        quam iure cumque tempore,
-      </div>
-      <div class="email-list-item">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ea
-        quam iure cumque tempore,
-      </div>
+  <body>
+    <div class="email" id="wrapper">
+      <div class="email-list"></div>
+      <div class="email-body"></div>
+    </div>
 
+    <template id="email-list-item">
       <div class="email-list-item">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ea
-        quam iure cumque tempore,
+          <p class="title"></p>
       </div>
-    </div>
-    <div class="email-body">
-      <h1 class="title">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ea
-        quam iure cumque tempore
-      </h1>
-      <p class="content">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. At earum
-        doloremque eum asperiores quaerat vero aliquam accusamus ex commodi.
-        Inventore voluptates omnis expedita mollitia aliquam odit labore a, quas
-        illo.
-      </p>
-    </div>
+    </template>
+    <template id="email-body">
+      <h1 class="title"></h1>
+      <p class="content"></p>
+    </template>
   </body>
 </html>
