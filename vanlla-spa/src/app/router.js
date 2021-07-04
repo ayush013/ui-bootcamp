@@ -1,13 +1,8 @@
-const ROUTES = [
-    { url: '/', view: () => console.log('home') },
-    { url: '/about', view: () => console.log('about') },
-    { url: '/settings', view: () => console.log('settings') },
-];
-
 export default class Router {
 
-    constructor() {
+    constructor(routes) {
         this.initRouteHandler();
+        this.routes = routes;
     }
 
     initRouteHandler() {
@@ -17,13 +12,15 @@ export default class Router {
                 history.pushState(null, null, e.target.href);
                 this.navigate();
             }
-        })
+        });
+
+        window.addEventListener('popstate', this.navigate.bind(this))
     }
 
     navigate() {
-        let matchRoute = ROUTES.find(route => route.url === location.pathname);
+        let matchRoute = this.routes.find(route => route.url === location.pathname);
         if (!matchRoute) {
-            matchRoute = ROUTES[0];
+            matchRoute = this.routes[0];
         }
 
         matchRoute.view();
