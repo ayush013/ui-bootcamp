@@ -1,4 +1,5 @@
 const BASE_INPUT = 'base-input';
+const TASK_INPUT = 'task-input';
 
 export default class Views {
     constructor() {
@@ -20,13 +21,30 @@ export default class Views {
 
     onEnterPress(callback) {
         document.addEventListener('keyup', e => {
-            if(e.target.classList.contains(BASE_INPUT)) {
-                if(e.code === 'Enter') {
+            if (e.target.classList.contains(BASE_INPUT)) {
+                if (e.code === 'Enter') {
                     callback(e.target.value);
                     e.target.value = '';
                 }
+            } else if(e.target.classList.contains(TASK_INPUT)) {
+                console.log(e.target.value)
             }
         })
     }
 
-} 
+    renderNote(note) {
+        const notesInput = this.baseTodo.content.cloneNode(true);
+
+        notesInput.querySelector('.todo input[type=text]').classList.add(TASK_INPUT);
+        notesInput.querySelector('.todo input[type=text]').value = note.title;
+        notesInput.querySelector('.todo').classList.add('todo-task');
+        const checkNode = notesInput.querySelector('.todo .check');
+
+        if (note.done) {
+            checkNode.querySelector('input[type=checkbox]').checked = true;
+        }
+
+        this.wrapper.appendChild(notesInput);
+    }
+
+}

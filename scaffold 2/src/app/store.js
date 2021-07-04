@@ -21,6 +21,8 @@ export default class Store {
 
         this._store.push(note);
         this.setLocalStore();
+
+        return note;
     }
 
     getLocalStore() {

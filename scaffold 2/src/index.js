@@ -5,14 +5,21 @@ import './style.scss'
 export const render = () => {
     const viewService = new Views();
     const storeService = new Store();
+
+    const store = storeService.allNotes;
+
+    store.forEach((note) => {
+        viewService.renderNote(note);
+    })
     
 
     viewService.onEnterPress((value) => {
         console.log(value)
-        storeService.addNote(value);
+        const note = storeService.addNote(value);
 
-        console.log(storeService.allNotes)
+        viewService.renderNote(note);
     });
+    
 
 }
 
