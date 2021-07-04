@@ -27,21 +27,37 @@ export default class Views {
                     callback(e.target.value);
                     e.target.value = '';
                 }
-            } else if (e.target.classList.contains(TASK_INPUT)) {
-                console.log(e.target.value)
             }
-        })
+        });
+    }
+
+    onTaskChange(callback) {
+        let timer;
+
+        document.addEventListener('keyup', (e) => {
+            clearTimeout(timer);
+
+            timer = setTimeout(() => {
+                if (e.target.classList.contains(TASK_INPUT)) {
+                    const parent = e.target.closest('.todo-task');
+                    callback(parseInt(parent.id, 10), e.target.value)
+                }
+            }, 500);
+        });
     }
 
     renderNote(note, first = false) {
+        const { id, title, done } = note;
+
         const notesInput = this.baseTodo.content.cloneNode(true);
 
         notesInput.querySelector('.todo input[type=text]').classList.add(TASK_INPUT);
-        notesInput.querySelector('.todo input[type=text]').value = note.title;
+        notesInput.querySelector('.todo input[type=text]').value = title;
+        notesInput.querySelector('.todo').id = id;
         notesInput.querySelector('.todo').classList.add('todo-task');
         const checkNode = notesInput.querySelector('.todo .check');
 
-        if (note.done) {
+        if (done) {
             checkNode.querySelector('input[type=checkbox]').checked = true;
         }
 

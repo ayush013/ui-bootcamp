@@ -25,6 +25,18 @@ export default class Store {
         return note;
     }
 
+    patchNote(id, title) {
+        const note = this._store.find(el => el.id === id);
+
+        if(note) {
+            note.title = title;
+            this.setLocalStore();
+            return true;
+        }
+
+        return false
+    }
+
     getLocalStore() {
         const localStore = localStorage.getItem('todos');
 
@@ -39,8 +51,8 @@ export default class Store {
     }
 
     setLocalStore() {
-        if(this._store.length) {
+        if (this._store.length) {
             localStorage.setItem('todos', JSON.stringify(this._store));
-        } 
+        }
     }
 }

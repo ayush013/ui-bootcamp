@@ -6,9 +6,9 @@ export const render = () => {
     const viewService = new Views();
     const storeService = new Store();
 
-    const store = storeService.allNotes;
+    const state = storeService.allNotes;
 
-    store.forEach((note) => {
+    state.forEach((note) => {
         viewService.renderNote(note);
     })
     
@@ -19,7 +19,11 @@ export const render = () => {
 
         viewService.renderNote(note, true);
     });
-    
+
+
+    viewService.onTaskChange((id, value) => {
+        storeService.patchNote(id, value);
+    });
 
 }
 
