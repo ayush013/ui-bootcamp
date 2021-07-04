@@ -1,7 +1,19 @@
 /* Basic reset */
 
+$white: #fff;
+$gray: #f3f4f6;
+$blue: #3B82F6;
+
 html {
   font-size: 16px;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 html,
@@ -18,12 +30,52 @@ body {
   font-weight: 400;
   min-height: 100vh;
   width: 100%;
+  background-color: $gray;
 }
 
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
+
+.email {
+  display: flex;
+
+  &-list {
+    flex: 0 0 60%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    padding-top: 2rem;
+
+    &-item {
+      padding: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      transition: 0.1s;
+      border-radius: 0.5rem;
+
+      &:hover {
+        background-color: $white;
+      }
+
+      &-active {
+        background-color: $white;
+        color: $blue;
+      }
+    }
+  }
+
+  &-body {
+    flex: 0 0 40%;
+    padding: 1.5rem;
+    background-color: $white;
+    padding-top: 2rem;
+
+    .title {
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .content {
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+  }
 }
