@@ -4,7 +4,7 @@ export default class Renderer {
     constructor() {
         this.viewService = new View();
 
-        const render = this.viewService.debounceRenderView(500);
+        const render = this.viewService.debounceRenderView(100);
 
         this.store = new Proxy([], {
             set: (target, prop, val) => {

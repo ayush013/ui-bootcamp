@@ -41,15 +41,17 @@ body {
     flex: 0 0 60%;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding-left: 1rem;
     padding-top: 2rem;
+    padding-bottom: 1rem;
 
     &-item {
       padding: 1rem;
       font-weight: 500;
       margin-bottom: 0.5rem;
       transition: 0.1s;
-      border-radius: 0.5rem;
+      border-radius: 0.5rem 0 0 0.5rem;
+      cursor: pointer;
 
       &:hover {
         background-color: $white;
@@ -67,6 +69,9 @@ body {
     padding: 1.5rem;
     background-color: $white;
     padding-top: 2rem;
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
 
     .title {
       font-weight: 600;

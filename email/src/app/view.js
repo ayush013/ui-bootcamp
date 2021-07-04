@@ -14,34 +14,41 @@ export default class View {
     }
 
     renderEmail(email) {
-        const { title, content } = email;
+        const { title, body } = email;
 
-        const body = this.bodyTemplate.content.cloneNode(true);
+        const template = this.bodyTemplate.content.cloneNode(true);
 
-        body.querySelector('.title').textContent = title;
-        body.querySelector('.content').textContent = content;
+        template.querySelector('.title').textContent = title;
+        template.querySelector('.content').textContent = body;
 
-        this.wrapper.querySelector('.email-body').innerHTML = body;
+        this.wrapper.querySelector('.email-body').appendChild(template);
     }
 
-    renderListItem(email, fragment) {
-        const { title } = email;
+    renderListItem(email, fragment, isActive) {
+        const { title, id } = email;
 
         const listItem = this.listItem.content.cloneNode(true);
 
         listItem.querySelector('.title').textContent = title;
+        listItem.querySelector('.email-list-item').id = `list-item-${id}`;
+        isActive && listItem.querySelector('.email-list-item').classList.add(`email-list-item-active`);
 
         fragment.appendChild(listItem);
     }
 
-    renderView(state) {
+    renderView(state, activeIdx = 0) {
         const listFragment = document.createDocumentFragment();
         
-        for(let item of state) {
-            this.renderListItem(item, listFragment)
-        }
+        state.forEach((item, i) => {
+            this.renderListItem(item, listFragment, activeIdx === i)
+        }) 
 
         this.wrapper.querySelector('.email-list').appendChild(listFragment);
+
+        const activeEl = state[activeIdx];
+
+        this.renderEmail(activeEl);
+
     }
 
     debounceRenderView(wait) {
