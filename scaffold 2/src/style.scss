@@ -18,6 +18,9 @@ body {
   font-weight: 400;
   min-height: 100vh;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
 }
 
 *,
@@ -26,4 +29,50 @@ body {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
+}
+
+.todo {
+  min-width: 50%;
+  height: max-content;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem rgba($color: #000000, $alpha: 0.1);
+  display: flex;
+  position: relative;
+  transition: 0.2s;
+
+  .check {
+    position: absolute;
+    height: 100%;
+    width: 2rem;
+    left: 0.25rem;
+    input[type="checkbox"] {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  input[type="text"] {
+    border: none;
+    padding: 1rem;
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-task {
+    input[type="text"] {
+      padding-left: 2.5rem;
+    }
+  }
+
+  &-done {
+    opacity: 0.5;
+    input[type="text"] {
+      text-decoration: line-through;
+    }
+  }
 }
