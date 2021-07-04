@@ -2,6 +2,7 @@ const BASE_INPUT = 'base-input';
 const TASK_INPUT = 'task-input';
 
 export default class Views {
+
     constructor() {
         this.baseTodo = document.getElementById('todo');
         this.wrapper = document.getElementById('wrapper');
@@ -22,17 +23,17 @@ export default class Views {
     onEnterPress(callback) {
         document.addEventListener('keyup', e => {
             if (e.target.classList.contains(BASE_INPUT)) {
-                if (e.code === 'Enter') {
+                if (e.code === 'Enter' && e.target.value.trim()) {
                     callback(e.target.value);
                     e.target.value = '';
                 }
-            } else if(e.target.classList.contains(TASK_INPUT)) {
+            } else if (e.target.classList.contains(TASK_INPUT)) {
                 console.log(e.target.value)
             }
         })
     }
 
-    renderNote(note) {
+    renderNote(note, first = false) {
         const notesInput = this.baseTodo.content.cloneNode(true);
 
         notesInput.querySelector('.todo input[type=text]').classList.add(TASK_INPUT);
@@ -44,7 +45,13 @@ export default class Views {
             checkNode.querySelector('input[type=checkbox]').checked = true;
         }
 
-        this.wrapper.appendChild(notesInput);
+
+        if (first) {
+            this.wrapper.insertBefore(notesInput, this.wrapper.firstElementChild.nextElementSibling)
+        } else {
+            this.wrapper.appendChild(notesInput)
+        }
+
     }
 
 }

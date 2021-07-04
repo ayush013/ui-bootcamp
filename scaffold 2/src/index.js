@@ -17,7 +17,7 @@ export const render = () => {
         console.log(value)
         const note = storeService.addNote(value);
 
-        viewService.renderNote(note);
+        viewService.renderNote(note, true);
     });
     
 

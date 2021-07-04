@@ -19,7 +19,7 @@ export default class Store {
             done: false
         }
 
-        this._store.push(note);
+        this._store.unshift(note);
         this.setLocalStore();
 
         return note;
