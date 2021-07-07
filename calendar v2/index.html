@@ -8,46 +8,26 @@
   </head>
 
   <body>
-    <div class="date-select flex">
-      <select name="month" id="month" placeholder="Select Month">
-          <option value="January">January</option>
-      </select>
-      <select name="year" id="year" placeholder="Select Year">
-        <option value="January">2020</option>
-
-      </select>
+    <div class="date-select flex" id="date-select">
+      <select name="month" id="month" placeholder="Select Month"></select>
+      <select name="year" id="year" placeholder="Select Year"></select>
     </div>
     <div class="flex">
       <div class="grid calendar" id="calendar-grid">
-          <div class="label col">
-            SUNDAY
-          </div>
-          <div class="label col">
-            SUNDAY
-          </div>
-          <div class="label col">
-            SUNDAY
-          </div>
-          <div class="label col">
-            SUNDAY
-          </div>
-          <div class="label col">
-            SUNDAY
-          </div>
-          <div class="label col">
-            SUNDAY
-          </div>
-          <div class="label col">
-            SUNDAY
-          </div>
-          <div class="cell cell-main col">
-              <span class="date">21</span>
-          </div>
-          
+
       </div>
       <div class="events">
           <h3 class="title">Planned Events</h3>
       </div>
+
+      <template id="cell">
+        <div class="cell col">
+            <span class="date"></span>
+        </div>
+      </template>
+      <template id="label">
+        <div class="label col"></div>
+      </template>
     </div>
 
   </body>
