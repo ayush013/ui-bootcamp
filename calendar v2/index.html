@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar v2</title>
-</head>
+  </head>
 
-<body>
-    <h1>TESSTTT</h1>
-</body>
+  <body>
+    <div class="date-select flex">
+      <select name="month" id="month" placeholder="Select Month">
+          <option value="January">January</option>
+      </select>
+      <select name="year" id="year" placeholder="Select Year">
+        <option value="January">2020</option>
+
+      </select>
+    </div>
+    <div class="flex">
+      <div class="grid calendar" id="calendar-grid">
+          <div class="label col">
+            SUNDAY
+          </div>
+          <div class="label col">
+            SUNDAY
+          </div>
+          <div class="label col">
+            SUNDAY
+          </div>
+          <div class="label col">
+            SUNDAY
+          </div>
+          <div class="label col">
+            SUNDAY
+          </div>
+          <div class="label col">
+            SUNDAY
+          </div>
+          <div class="label col">
+            SUNDAY
+          </div>
+          <div class="cell cell-main col">
+              <span class="date">21</span>
+          </div>
+          
+      </div>
+      <div class="events">
+          <h3 class="title">Planned Events</h3>
+      </div>
+    </div>
+
+  </body>
 </html>

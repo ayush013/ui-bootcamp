@@ -1,5 +1,9 @@
 /* Basic reset */
 
+$gray: #F9FAFB;
+$white: #FFF;
+$blue: #3B82F6;
+
 html {
   font-size: 16px;
 }
@@ -18,6 +22,8 @@ body {
   font-weight: 400;
   min-height: 100vh;
   width: 100%;
+  background-color: $gray;
+  padding: 2rem;
 }
 
 *,
@@ -26,4 +32,82 @@ body {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.calendar {
+  display: grid;
+  margin-top: 3rem;
+  // grid-template-rows: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  flex: 0 0 80%;
+
+  .cell {
+    font-weight: 600;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid darken($gray, 10);
+    text-align: right;
+    padding-bottom: 2rem;
+    transition: 0.3s;
+    .date {
+      font-size: 3rem;
+    }
+
+    &-main {
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($gray, 5);
+      }
+    }
+
+    &-offset {
+      border: none;
+      .date {
+        display: none;
+      }
+    }
+  }
+
+  .label {
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $blue;
+    text-align: right;
+    padding: 0.5rem;
+    border: 1px solid darken($gray, 10);
+  }
+
+  .col {
+    grid-column: span 1 / span 1;
+  }
+}
+
+.events {
+  flex: 0 0 20%;
+  padding: 1rem;
+  .title {
+    font-weight: 600;
+  }
+}
+
+.date-select {
+  gap: 1rem;
+  select {
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: transparent;
+    transition: 0.2s;
+    &:hover {
+      background-color: darken($gray, 5);
+    }
+  }
 }
