@@ -13,22 +13,28 @@
       <select name="year" id="year" placeholder="Select Year"></select>
     </div>
     <div class="flex">
-      <div class="grid calendar" id="calendar-grid">
+      <div class="grid calendar" id="calendar-grid"></div>
+      <div class="events flex">
+        <h3 class="title">Planned Events</h3>
 
+        <button class="add-event">+ Add Event</button>
       </div>
-      <div class="events">
-          <h3 class="title">Planned Events</h3>
-      </div>
+
+      <template id="event">
+        <div class="event-card">
+          <span class="title">wiueheiuw foiewj foiwej ewf</span>
+          <span class="date">12, 13, 3131</span>
+        </div>
+      </template>
 
       <template id="cell">
         <div class="cell col">
-            <span class="date"></span>
+          <span class="date"></span>
         </div>
       </template>
       <template id="label">
         <div class="label col"></div>
       </template>
     </div>
-
   </body>
 </html>

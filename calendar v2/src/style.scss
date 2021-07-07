@@ -3,6 +3,7 @@
 $gray: #F9FAFB;
 $white: #FFF;
 $blue: #3B82F6;
+$red: #EF4444;
 
 html {
   font-size: 16px;
@@ -54,8 +55,18 @@ body {
     padding-bottom: 2rem;
     transition: 0.3s;
     .date {
-      font-size: 3rem;
+      font-size: 2rem;
       pointer-events: none;
+      display: inline-block;
+      padding: 0.2rem;
+
+      &.today {
+        background-color: $red;
+        border-radius: 50%;
+        color: white;
+        padding: 0.2rem 0.8rem;
+
+      }
     }
 
     &-main {
@@ -90,8 +101,45 @@ body {
 .events {
   flex: 0 0 20%;
   padding: 1rem;
+  flex-direction: column;
+  gap: 1rem;
+
   .title {
     font-weight: 600;
+  }
+
+
+  .event-card {
+    padding: 0.5rem;
+    border: 1px solid darken($gray, 5);
+    border-radius: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    cursor: pointer;
+
+    .date {
+      color: darken($gray, 50);
+      font-size: 0.85rem;
+    }
+  }
+
+  .add-event {
+    padding: 0.5rem;
+    width: 100%;
+    background-color: rgba($color: $blue, $alpha: 0.1);
+    color: $blue;
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    border-radius: 0.3rem;
+    transition: 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($color: $blue, $alpha: 0.2);
+    }
   }
 }
 

@@ -16,7 +16,7 @@ export default class Controller {
 
         const [date, month, year] = getCurrentDate();
 
-        this.createCells(month, year);
+        this.createCells(date, month, year);
 
         this.initSelect(month, year);
     }
@@ -33,7 +33,7 @@ export default class Controller {
 
     }
 
-    createCells(month, year) {
+    createCells(date, month, year) {
         const fragment = document.createDocumentFragment();
 
         const days = getDaysInMonth(year, month + 1);
@@ -50,11 +50,17 @@ export default class Controller {
 
         i = days;
 
+        const [currentDate, currentMonth, currentYear] = getCurrentDate();
+
         while(i--) {
             const cell = this.baseCell.content.cloneNode(true);
             cell.querySelector('.cell').classList.add('cell-main')
             cell.querySelector('.cell').id = days - i;
             cell.querySelector('.date').textContent = days - i;
+
+            if(currentMonth === month && currentYear === year) {
+                (currentDate === days - i) && cell.querySelector('.date').classList.add('today')
+            }
             fragment.appendChild(cell);
         }
 
@@ -121,14 +127,14 @@ export default class Controller {
             currentMonth = e.target.value;
             this.destroyLayout();
             this.createLabels();
-            this.createCells(currentMonth - 1, currentYear);
+            this.createCells(0, currentMonth - 1, parseInt(currentYear));
         });
 
         yearDropdown.addEventListener('change', e => {
             currentYear = e.target.value;
             this.destroyLayout();
             this.createLabels();
-            this.createCells(currentMonth - 1, currentYear);
+            this.createCells(0, currentMonth - 1, parseInt(currentYear));
         });
     }
 
