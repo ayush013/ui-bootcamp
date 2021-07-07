@@ -1,4 +1,4 @@
-import { DAYS, getCurrentDate, getCurrentDay, getDaysInMonth, MONTHS } from "./date-utils";
+import { DAYS, getCurrentDate, getDay, getDaysInMonth, MONTHS } from "./date-utils";
 
 export default class Controller {
 
@@ -16,7 +16,7 @@ export default class Controller {
 
         const [date, month, year] = getCurrentDate();
 
-        this.createCells(date, month, year);
+        this.createCells(month, year);
 
         this.initSelect(month, year);
     }
@@ -33,14 +33,14 @@ export default class Controller {
 
     }
 
-    createCells(date, month, year) {
+    createCells(month, year) {
         const fragment = document.createDocumentFragment();
 
         const days = getDaysInMonth(year, month + 1);
 
-        const offset = getCurrentDay(date, month, year);
+        const offset = getDay(1, month, year);
 
-        let i = offset + 1;
+        let i = offset % 7;
 
         while(i--) {
             const cell = this.baseCell.content.cloneNode(true);
@@ -53,12 +53,19 @@ export default class Controller {
         while(i--) {
             const cell = this.baseCell.content.cloneNode(true);
             cell.querySelector('.cell').classList.add('cell-main')
+            cell.querySelector('.cell').id = days - i;
             cell.querySelector('.date').textContent = days - i;
             fragment.appendChild(cell);
         }
 
         this.wrapper.appendChild(fragment);
 
+    }
+
+    destroyLayout() {
+        while(this.wrapper.childElementCount) {
+            this.wrapper.removeChild(this.wrapper.firstElementChild);
+        }
     }
 
     initSelect(month, year) {
@@ -68,14 +75,14 @@ export default class Controller {
 
         MONTHS.forEach((month, i) => {
             const option = document.createElement('option');
-            option.value = i;
+            option.value = i + 1;
             option.textContent = month;
             monthOptions.appendChild(option);
         })
 
         monthDropdown.appendChild(monthOptions);
 
-        monthDropdown.value = month;
+        monthDropdown.value = month + 1;
 
         const yearDropdown = this.selectWrapper.querySelector('select[name=year]');
 
@@ -91,6 +98,38 @@ export default class Controller {
         yearDropdown.appendChild(yearOptions);
 
         yearDropdown.value = year;
+
+        this.onSelectChange()
+    }
+
+    onDateClick() {
+        this.wrapper.addEventListener('click', e => {
+            if(e.target.classList.contains('cell-main')) {
+                
+            }
+        })
+    }
+
+    onSelectChange() {
+        const yearDropdown = this.selectWrapper.querySelector('select[name=year]');
+        const monthDropdown = this.selectWrapper.querySelector('select[name=month]');
+
+        let currentYear = yearDropdown.value;
+        let currentMonth = monthDropdown.value;
+
+        monthDropdown.addEventListener('change', e => {
+            currentMonth = e.target.value;
+            this.destroyLayout();
+            this.createLabels();
+            this.createCells(currentMonth - 1, currentYear);
+        });
+
+        yearDropdown.addEventListener('change', e => {
+            currentYear = e.target.value;
+            this.destroyLayout();
+            this.createLabels();
+            this.createCells(currentMonth - 1, currentYear);
+        });
     }
 
 }

@@ -55,6 +55,7 @@ body {
     transition: 0.3s;
     .date {
       font-size: 3rem;
+      pointer-events: none;
     }
 
     &-main {

@@ -8,7 +8,7 @@ export const getCurrentDate = () => {
     return [date.getDate(), date.getMonth(), date.getFullYear()];
 }
 
-export const getCurrentDay = (d, m, y) => {
+export const getDay = (d, m, y) => {
     return new Date(y, m, d).getDay();
 }
 
