@@ -7,8 +7,11 @@ export default class Controller {
         this.baseLabel = document.getElementById('label');
         this.wrapper = document.getElementById('calendar-grid');
         this.selectWrapper = document.getElementById('date-select');
+        this.eventWrapper = document.getElementById('event-wrapper');
 
         this.initialize();
+
+        this.activeCell = null;
     }
 
     initialize() {
@@ -16,9 +19,10 @@ export default class Controller {
 
         const [date, month, year] = getCurrentDate();
 
-        this.createCells(date, month, year);
+        this.createCells(month, year);
 
         this.initSelect(month, year);
+
     }
 
     createLabels() {
@@ -33,7 +37,7 @@ export default class Controller {
 
     }
 
-    createCells(date, month, year) {
+    createCells(month, year) {
         const fragment = document.createDocumentFragment();
 
         const days = getDaysInMonth(year, month + 1);
@@ -55,7 +59,7 @@ export default class Controller {
         while(i--) {
             const cell = this.baseCell.content.cloneNode(true);
             cell.querySelector('.cell').classList.add('cell-main')
-            cell.querySelector('.cell').id = days - i;
+            cell.querySelector('.cell').id = `${days - i}-${month + 1}-${year}`;
             cell.querySelector('.date').textContent = days - i;
 
             if(currentMonth === month && currentYear === year) {
@@ -108,10 +112,23 @@ export default class Controller {
         this.onSelectChange()
     }
 
-    onDateClick() {
+    onDateClick(callback) {
         this.wrapper.addEventListener('click', e => {
             if(e.target.classList.contains('cell-main')) {
-                
+
+                this.activeCell = e.target.id;
+
+                const cells = e.target.parentElement.children;
+
+                Array.from(cells).forEach(el => {
+                    if(el.classList.contains('cell-active')) {
+                        el.classList.remove('cell-active');
+                    }
+                })
+
+                document.getElementById(this.activeCell).classList.add('cell-active');
+
+                callback(this.activeCell);
             }
         })
     }
@@ -127,14 +144,14 @@ export default class Controller {
             currentMonth = e.target.value;
             this.destroyLayout();
             this.createLabels();
-            this.createCells(0, currentMonth - 1, parseInt(currentYear));
+            this.createCells(currentMonth - 1, parseInt(currentYear));
         });
 
         yearDropdown.addEventListener('change', e => {
             currentYear = e.target.value;
             this.destroyLayout();
             this.createLabels();
-            this.createCells(0, currentMonth - 1, parseInt(currentYear));
+            this.createCells(currentMonth - 1, parseInt(currentYear));
         });
     }
 
