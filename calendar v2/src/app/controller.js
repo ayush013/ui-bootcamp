@@ -8,6 +8,7 @@ export default class Controller {
         this.wrapper = document.getElementById('calendar-grid');
         this.selectWrapper = document.getElementById('date-select');
         this.eventWrapper = document.getElementById('event-wrapper');
+        this.eventTemplate = document.getElementById('event');
 
         this.initialize();
 
@@ -153,6 +154,28 @@ export default class Controller {
             this.createLabels();
             this.createCells(currentMonth - 1, parseInt(currentYear));
         });
+    }
+
+    renderEvents(events) {
+        const fragment = new DocumentFragment();
+
+        events.forEach(ev => {
+            const eventCell = this.eventTemplate.content.cloneNode(true);   
+            eventCell.querySelector('.title').textContent = ev.name;
+            eventCell.querySelector('.date').textContent = ev.id;
+
+            fragment.appendChild(eventCell);
+        })
+
+        this.eventWrapper.appendChild(fragment);
+    }
+
+    destroyEvents() {
+        if(this.eventWrapper.childElementCount) {
+            while(this.eventWrapper.childElementCount) {
+                this.eventWrapper.removeChild(this.eventWrapper.firstElementChild);
+            }
+        }
     }
 
 }

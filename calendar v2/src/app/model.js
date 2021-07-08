@@ -18,7 +18,7 @@ export default class Model {
     }
 
     getEventsById(id) {
-        return this._events.find(ev => ev.id === id);
+        return this._events.find(ev => ev.id === id)?.events;
     }
 
     getLocalStore() {
@@ -41,6 +41,8 @@ export default class Model {
         } else {
             this._events.push({ id, events: [{ name, desc }] });
         }
+
+        this.setLocalStore()
     }
 
 }
